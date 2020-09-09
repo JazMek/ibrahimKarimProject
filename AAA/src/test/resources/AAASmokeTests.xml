@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 
-<suite name="AAA Automation Script" verbose="2" parallel="false">
+<suite name="AAA Smoke Tests Script" verbose="2" parallel="false">
     <!--        <parameter name="useCloudEnv" value="true"/>-->
     <!--&lt;!&ndash;        <parameter name="cloudEnvName" value="browserstack"/>&ndash;&gt;-->
     <!--    <parameter name="cloudEnvName" value="saucelab"/>-->
@@ -13,12 +13,19 @@
     <parameter name="browserName" value="chrome"/>
     <parameter name="browserVersion" value="83"/>
     <parameter name="url" value="https://northeast.aaa.com/"/>
-    <test name="AAA Home">
+
+
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="SmokeTesting"/>
+            </run>
+        </groups>
 
         <classes>
 
-                         <class name="aaaTests.TestAAAHomePage"></class>
-                        <class name="aaaTests.TestAAADrivingSchoolPage"/>
+                         <class name="aaaTests.TestAAAHomePage"/>
+<!--                        <class name="aaaTests.TestAAADrivingSchoolPage"/>-->
             <!--            <class name="home.TestHomePage"/>-->
             <!--            <class name="home.TestHomePage"/>-->
             <!--            <class name="home.TestHomePage"/>-->

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+
+<suite name="AAA Automation Script karim" verbose="2" parallel="false">
+    <!--        <parameter name="useCloudEnv" value="true"/>-->
+    <!--&lt;!&ndash;        <parameter name="cloudEnvName" value="browserstack"/>&ndash;&gt;-->
+    <!--    <parameter name="cloudEnvName" value="saucelab"/>-->
+    <!--            <parameter name="os" value="windows"/>-->
+    <parameter name="os" value="OS X"/>
+    <!--            <parameter name="os_version" value="10"/>-->
+    <parameter name="os_version" value="Catalina"/>
+    <parameter name="browserName" value="chrome"/>
+    <parameter name="browserVersion" value="83"/>
+    <parameter name="url" value="https://northeast.aaa.com/"/>
+
+    <test verbose="2" preserve-order="true" name="/Users/karimmekdoud/IdeaProjects/ibrahimKarimProject/AAA">
+        <groups>
+            <run>
+                <exclude name="SmokeTesting"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="aaaTests.TestAAAHomePage">
+                <methods>
+                    <include name="HomePage_Get_Title_Test"/>
+                    <include name="HomePage_Get_Url_Test"/>
+                    <include name="HomePage_PopUP_Window_By_Zip_Code_Is_Displayed_Test"/>
+                    <include name="HomePage_Get_Notification_Text_Test"/>
+                    <include name="HomePage_Check_Join_Button_Is_Displayed_Test"/>
+                    <include name="HomePage_Check_Join_Button_Is_Enabled_Test"/>
+                    <include name="HomePage_Check_Return_To_Top_Button_After_ScrollDown_Is_Displayed_Test"/>
+                    <include name="HomePage_Check_Round_Trip_Air_Radio_Button_Is_Selected_Test"/>
+                    <include name="HomePage_Check_One_Way_Air_Radio_Button_Is_Selected_Test"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

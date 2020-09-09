@@ -485,7 +485,7 @@ public class WebAPI {
         alert.accept();
     }
 
-    public void cancelAlert() {
+    public void cancelAlert(WebDriver driver) {
         Alert alert = driver.switchTo().alert();
         alert.dismiss();
     }
@@ -632,7 +632,7 @@ public class WebAPI {
     }
 
     //implicite wait time
-    public void ImplicitWaitTime(long WaitTime) {
+    public static void ImplicitWaitTime(long WaitTime) {
 
         driver.manage().timeouts().implicitlyWait(WaitTime, TimeUnit.SECONDS);
     }
@@ -651,6 +651,7 @@ public class WebAPI {
         System.out.println(actualText);
     }
     //Assert method to compare Text
+
     public static void compare_Text_text(String expectedText, String actueleResult) {
         Assert.assertEquals(actueleResult, expectedText, "The text doesn't match");
         System.out.println(actueleResult);
@@ -665,7 +666,7 @@ public class WebAPI {
     }
 
     //windows setup
-    public static void setUpWindow() {
+    public static void setUpWindow(WebDriver driver) {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().window().fullscreen();
@@ -683,7 +684,7 @@ public class WebAPI {
         driver.manage().window().fullscreen();
     }
 
-//method  Scroll Up
+    //method  Scroll Up
     public static void Page_Scroll_Up(WebDriver driver) {
         Actions actions = new Actions(driver);
         // Scroll Up using Actions class
@@ -707,8 +708,8 @@ public class WebAPI {
         // Scroll Down using Actions class
         actions.keyDown(Keys.CONTROL).moveToElement(element).perform();
     }
-    //method  Scroll Down to The webElement
-    public static void Page_Scroll_DownToElementAndclick(WebElement element) {
+    //method  Scroll Down to The webElement and click
+    public static void Page_Scroll_Down_To_Element_And_Click(WebDriver driver,WebElement element) {
         Actions actions = new Actions(driver);
         // Scroll Down using Actions class
         actions.keyDown(Keys.CONTROL).moveToElement(element).click();
@@ -759,7 +760,44 @@ public class WebAPI {
 
 
 
+    // method to check if the Webelement is displayed
+    public static boolean isWebElementDisplayed(WebDriver driver, WebElement webElement) {
+        boolean value = webElement.isDisplayed();
+        return value;
+    }
+    // method to check if the Webelement is Enabled
+    public static boolean isWebElementEnabled(WebDriver driver, WebElement webElement) {
+        boolean value = webElement.isEnabled();
+        return value;
+    }
+    // sending and  enter the key using webElement
+    public static void keysInput(WebElement webElement,String key ) { webElement.sendKeys(key,Keys.ENTER); }
 
+    //method  Scroll Down to The webElement
+    public static void Page_Scroll_Down_To_The_End_Of_Page(WebDriver driver) {
+        Actions actions = new Actions(driver);
+        // Scroll Down using Actions class
+//        actions.keyDown(Keys.CONTROL).moveToElement(element);
+        actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
 
+    }
+    //method  Scroll Down to The webElement
+    public static void scrollIntoView(WebElement element, WebDriver driver){
+        JavascriptExecutor js=((JavascriptExecutor) driver);
+        js.executeScript("arguments[0].scrollIntoView(true)",element);
+    }
+    //scroll Page down to the end
+    public static void scrollPageDown(WebDriver driver){
+        JavascriptExecutor js=((JavascriptExecutor) driver);
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    }
+    public static void navigateToUrl(WebDriver driver,String URL){
+        driver.get(URL);
+    }
+    public List<WebElement> get_List_Of_WebElements(WebElement webElement) {
+        List<WebElement> list = webElement.findElements(By.name("alt"));
+        list.addAll(webElement.findElements(By.tagName("alt")));
+        return list;
+    }
 }
 
